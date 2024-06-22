@@ -8,11 +8,11 @@ function Workplan() {
       <h1 className="text-black text-lg">Today&apos;s Workout</h1>
       <Steps
         direction="vertical"
-        current={3}
         items={[
           {
             title: <div> Finished</div>,
             description: <div> &nbsp;</div>,
+            status: "finish",
           },
 
           {
@@ -22,10 +22,12 @@ function Workplan() {
           {
             title: "In Progress",
             description: <div>&nbsp;</div>,
+            status: "error",
           },
           {
             title: "Waiting",
             description: <div>&nbsp;</div>,
+            status: "finish",
           },
           {
             title: "Waiting",
