@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogBackdrop,
@@ -30,9 +31,14 @@ import {
 } from "@heroicons/react/20/solid";
 
 const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Teams", href: "#", icon: UsersIcon, current: false },
-  { name: "Individual", href: "#", icon: UserIcon, current: false },
+  // { name: "Dashboard", href: "/coach", icon: HomeIcon, current: true },
+  { name: "Teams", href: "/coach/teams", icon: UsersIcon, current: false },
+  {
+    name: "Individual",
+    href: "/coach/members",
+    icon: UserIcon,
+    current: false,
+  },
 ];
 
 const userNavigation = [
@@ -46,6 +52,11 @@ function classNames(...classes: any) {
 
 export default function CoachDashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname(); // 获取当前路径
+
+  useEffect(() => {
+    console.log("Current Pathname:", pathname); // 检查 pathname 是否正确
+  }, [pathname]);
 
   return (
     <>
@@ -80,9 +91,9 @@ export default function CoachDashboard() {
                   </button>
                 </div>
               </TransitionChild>
-              {/* Sidebar component, swap this element with another sidebar if you like */}
+
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800 px-6 pb-4 ring-1 ring-white/10">
-                <div className="flex h-16 shrink-0 items-center bg-gray-800">
+                <div className="flex h-16 shrink-0 items-center ">
                   <Image
                     className="h-8 w-auto"
                     src="/logo2.png"
@@ -95,12 +106,17 @@ export default function CoachDashboard() {
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
                     <li>
                       <ul role="list" className="-mx-2 space-y-1">
+                        {/* {navigation.map((item) => {
+                          console.log("item.href", item.href);
+                          console.log("pathname", pathname);
+                          return <div>test</div>;
+                        })} */}
                         {navigation.map((item) => (
                           <li key={item.name}>
                             <a
                               href={item.href}
                               className={classNames(
-                                item.current
+                                pathname === item.href
                                   ? "bg-gray-800 text-white"
                                   : "text-gray-400 hover:bg-gray-800 hover:text-white",
                                 "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
@@ -123,9 +139,7 @@ export default function CoachDashboard() {
           </div>
         </Dialog>
 
-        {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-800 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center bg-gray-800">
               <Image
@@ -177,7 +191,6 @@ export default function CoachDashboard() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
 
-            {/* Separator */}
             <div
               className="h-6 w-px bg-gray-900/10 lg:hidden"
               aria-hidden="true"
@@ -209,13 +222,11 @@ export default function CoachDashboard() {
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
 
-                {/* Separator */}
                 <div
                   className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10"
                   aria-hidden="true"
                 />
 
-                {/* Profile dropdown */}
                 <Menu as="div" className="relative">
                   <MenuButton className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
@@ -229,7 +240,7 @@ export default function CoachDashboard() {
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
                         aria-hidden="true"
                       >
-                        Tom Cook
+                        Coach Tom
                       </span>
                       <ChevronDownIcon
                         className="ml-2 h-5 w-5 text-gray-400"
@@ -261,10 +272,6 @@ export default function CoachDashboard() {
               </div>
             </div>
           </div>
-
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
-          </main>
         </div>
       </div>
     </>

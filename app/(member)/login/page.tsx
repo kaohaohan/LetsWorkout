@@ -56,7 +56,10 @@ function Login() {
               </div>
               <div className="flex items-center space-x-2">
                 <span>Not a member? </span>
-                <a href="#" className="underline font-medium text-[#070eff]">
+                <a
+                  href="/signup"
+                  className="underline font-medium text-[#070eff]"
+                >
                   Sign up now
                 </a>
               </div>

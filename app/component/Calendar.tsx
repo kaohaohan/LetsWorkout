@@ -1,10 +1,9 @@
 "use client";
 // src/app/calendar/calendar.tsx
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar as AntdCalendar, CalendarProps, Badge } from "antd";
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
-
 
 //firebase
 import { collection, getDocs } from "firebase/firestore";
@@ -50,9 +49,8 @@ const Calendar: React.FC = () => {
     console.log(`Workouts for ${dateString}:`, workoutData[dateString] || []);
   };
 
-
   return (
-    <div className="calendar-container">
+    <div className="my-2">
       <AntdCalendar
         onSelect={onSelect}
         defaultValue={dayjs("2024-05-01")}

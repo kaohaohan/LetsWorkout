@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Workplan from "./Workplan";
-import { Carousel } from "antd";
+import { Carousel, StepProps } from "antd";
 import styled from "styled-components";
 
 // Define a style object for the content inside the carousel
@@ -27,6 +27,13 @@ const StyledCarousel = styled(Carousel)`
 //? means that props is optional
 interface CarouselCardProps {
   beforeChange?: (current: number, next: number) => void;
+  data: Array<{
+    date: string;
+    plan: Array<{
+      title: string;
+      status: StepProps["status"];
+    }>;
+  }>;
 }
 
 const defaultBeforeChange = (current: number, next: number) => {};
@@ -35,21 +42,13 @@ const defaultBeforeChange = (current: number, next: number) => {};
 //if I dont do anything, give the defaultBeforeChange.
 const CarouselCard: React.FC<CarouselCardProps> = ({
   beforeChange = defaultBeforeChange,
+  data,
 }) => {
   return (
     <StyledCarousel arrows infinite={false} beforeChange={beforeChange}>
-      <div>
-        <Workplan />
-      </div>
-      <div>
-        <Workplan />
-      </div>
-      <div>
-        <Workplan />
-      </div>
-      <div>
-        <Workplan />
-      </div>
+      {data.map((workout, index) => {
+        return <Workplan date={workout.date} plan={workout.plan} key={index} />;
+      })}
     </StyledCarousel>
   );
 };
