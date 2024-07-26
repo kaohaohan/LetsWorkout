@@ -21,7 +21,7 @@ function Login() {
               <a href="/">
                 <Image
                   className="h-8 w-auto"
-                  src="logo2.png"
+                  src="/logo2.png"
                   alt="Your Company"
                   width={32}
                   height={32}
@@ -60,17 +60,17 @@ function Login() {
                   href="/signup"
                   className="underline font-medium text-[#070eff]"
                 >
-                  Sign up now
+                  Login now
                 </a>
               </div>
             </div>
             <div className="flex flex-col justify-center flex-1 max-w-md space-y-5">
               <div className="flex flex-col space-y-2 text-center">
                 <h2 className="text-3xl font-bold md:text-4xl">
-                  login to account
+                  Hey Welcome Back
                 </h2>
                 <p className="text-md md:text-xl">
-                  Sign up or log in to place the order, no password require!
+                  Are you ready to start your worout today ?
                 </p>
               </div>
               <div className="flex flex-col max-w-md space-y-5">
@@ -134,6 +134,27 @@ function Login() {
                     )}
                   </button>
                 </div>
+                <button className="flex items-center justify-center flex-none px-3 py-2 font-medium text-white bg-black border-2 border-black rounded-lg md:px-4 md:py-3">
+                  <a href="/calendar">Login</a>
+                </button>
+                <div className="flex items-center justify-center">
+                  <span className="w-full border border-black"></span>
+                  <span className="px-4">Or</span>
+                  <span className="w-full border border-black"></span>
+                </div>
+                <button className="relative flex items-center justify-center flex-none px-3 py-2 font-medium border-2 border-black rounded-lg md:px-4 md:py-3">
+                  <span className="absolute left-4">
+                    <svg
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    ></svg>
+                  </span>
+                  <a href="/signup">
+                    <span> Join us now</span>
+                  </a>
+                </button>
               </div>
             </div>
 
