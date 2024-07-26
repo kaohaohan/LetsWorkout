@@ -1,4 +1,8 @@
+"use client";
 import "./page.css";
+import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
+
 function SignUp() {
   return (
     <body className="bg-white">
@@ -118,7 +122,9 @@ function SignUp() {
                       xmlns="http://www.w3.org/2000/svg"
                     ></svg>
                   </span>
-                  <span>Already a member ?</span>
+                  <a href="/login">
+                    <span> Already a member ?</span>
+                  </a>
                 </button>
               </div>
             </div>
